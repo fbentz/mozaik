@@ -18,6 +18,7 @@ var ApiStore = Reflux.createStore({
 
         ws = new WebSocket(`${ proto }://${ window.document.location.host }`);
         ws.onmessage = event => {
+            if (event.data === '') return;
             ApiStore.trigger(JSON.parse(event.data));
         };
 
